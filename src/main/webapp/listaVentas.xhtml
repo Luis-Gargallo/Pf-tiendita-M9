@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Distribution License v. 1.0, which is available at
+    http://www.eclipse.org/org/documents/edl-v10.php.
+
+    SPDX-License-Identifier: BSD-3-Clause
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+    <h:head>
+        <title>Venta</title>
+        <style>
+
+        </style>
+    </h:head>
+    <h:body >
+        <h:form>
+            <h:graphicImage url="#{resource['images:robot.gif']}" 
+                            alt="Duke waving his hand"/>
+            <h2>Registro</h2>
+            <label>
+                ID:
+                <h:inputText id="idVenta" value="#{venta.idVenta}"/>
+            </label>
+            <label>
+                Total:
+                <h:inputText id="total" value="#{venta.total}"/>
+            </label>
+            <label>
+                Candidad:
+                <h:inputText id="cantidad" value="#{venta.cantidad}"/>
+            </label>
+            <label>
+                Fecha de venta:
+                <h:inputText id="fechaVenta" value="#{venta.fechaVenta}"/>
+            </label>
+            <h:commandButton id="agregar" value="Agregar">
+                <f:ajax execute="idVenta total cantidad fechaVenta" listener="#{venta.vnt}" render="ventas"/>
+            </h:commandButton>
+        </h:form>
+        &nbsp;&nbsp;
+        <h:dataTable id="ventas"
+                         value="#{venta.ventas}"
+                         var="vent"
+                         border="1"
+                         summary="Lista de Candidatos" >
+                <h:column>
+                    <f:facet name="header">
+                        ID
+                    </f:facet>
+                    <h:outputText value="#{vent.idVenta}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Total
+                    </f:facet>
+                    <h:outputText value="#{vent.total}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Cantidad
+                    </f:facet>
+                    <h:outputText value="#{vent.cantidad}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Fecha de venta
+                    </f:facet>
+                    <h:outputText value="#{vent.fechaVenta}" />
+                </h:column>
+            </h:dataTable>
+        <h:form>
+            <h:commandLink id="Index" value="Index" action="index" />
+        </h:form>
+    </h:body>
+</html>
